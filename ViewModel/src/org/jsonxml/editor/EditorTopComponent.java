@@ -10,10 +10,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.json.JSONML;
+import org.json.JSONObject;
 import org.json.XML;
 import org.jsonxml.library.ScadabrJson;
 import org.netbeans.api.settings.ConvertAsProperties;
@@ -61,26 +60,27 @@ public final class EditorTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TestButton = new javax.swing.JButton();
-        OpenButton = new javax.swing.JButton();
+        openReplacePatternButton = new javax.swing.JButton();
+        openXMLButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         xmlFileArea = new javax.swing.JTextArea();
-        ConvertButton = new javax.swing.JButton();
+        convertToJsonButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jsonFileArea = new javax.swing.JTextArea();
-        toXML = new javax.swing.JButton();
+        convertToXMLButton = new javax.swing.JButton();
+        openJsonButton = new javax.swing.JButton();
 
-        org.openide.awt.Mnemonics.setLocalizedText(TestButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.TestButton.text")); // NOI18N
-        TestButton.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(openReplacePatternButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.openReplacePatternButton.text")); // NOI18N
+        openReplacePatternButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TestButtonActionPerformed(evt);
+                openReplacePatternButtonActionPerformed(evt);
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(OpenButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.OpenButton.text")); // NOI18N
-        OpenButton.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(openXMLButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.openXMLButton.text")); // NOI18N
+        openXMLButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OpenButtonActionPerformed(evt);
+                openXMLButtonActionPerformed(evt);
             }
         });
 
@@ -89,21 +89,31 @@ public final class EditorTopComponent extends TopComponent {
         xmlFileArea.setRows(5);
         jScrollPane1.setViewportView(xmlFileArea);
 
-        org.openide.awt.Mnemonics.setLocalizedText(ConvertButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.ConvertButton.text")); // NOI18N
-        ConvertButton.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(convertToJsonButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.convertToJsonButton.text")); // NOI18N
+        convertToJsonButton.setEnabled(false);
+        convertToJsonButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConvertButtonActionPerformed(evt);
+                convertToJsonButtonActionPerformed(evt);
             }
         });
 
+        jsonFileArea.setEditable(false);
         jsonFileArea.setColumns(20);
         jsonFileArea.setRows(5);
         jScrollPane3.setViewportView(jsonFileArea);
 
-        org.openide.awt.Mnemonics.setLocalizedText(toXML, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.toXML.text")); // NOI18N
-        toXML.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(convertToXMLButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.convertToXMLButton.text")); // NOI18N
+        convertToXMLButton.setEnabled(false);
+        convertToXMLButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toXMLActionPerformed(evt);
+                convertToXMLButtonActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(openJsonButton, org.openide.util.NbBundle.getMessage(EditorTopComponent.class, "EditorTopComponent.openJsonButton.text")); // NOI18N
+        openJsonButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openJsonButtonActionPerformed(evt);
             }
         });
 
@@ -112,58 +122,62 @@ public final class EditorTopComponent extends TopComponent {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(OpenButton)
+                        .addComponent(openXMLButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ConvertButton)
+                        .addComponent(convertToJsonButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TestButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(toXML)
-                        .addGap(0, 76, Short.MAX_VALUE))
+                        .addComponent(openReplacePatternButton)
+                        .addGap(0, 27, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(openJsonButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(convertToXMLButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(OpenButton)
-                    .addComponent(ConvertButton)
-                    .addComponent(TestButton)
-                    .addComponent(toXML))
-                .addContainerGap())
+                    .addComponent(convertToJsonButton)
+                    .addComponent(openReplacePatternButton)
+                    .addComponent(openXMLButton)
+                    .addComponent(convertToXMLButton)
+                    .addComponent(openJsonButton))
+                .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
+    private void openXMLButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openXMLButtonActionPerformed
         try {
-            BufferedReader br;
             JFileChooser chooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter(
                     "XML Files", "xml");
             chooser.setFileFilter(filter);
-            int returnVal = chooser.showOpenDialog(null);
+            int returnVal = chooser.showOpenDialog(this);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                br = new BufferedReader(new FileReader(new File(chooser.getSelectedFile().toString())));
+                brXMLFile = new BufferedReader(new FileReader(new File(chooser.getSelectedFile().toString())));
+                if (brFilterFile != null) {
+                    convertToJsonButton.setEnabled(true);
+                } // enable convertion to Json
+
                 String line;
                 xmlFileArea.setText("");
                 lineXML.setLength(0);
                 try {
-                    while ((line = br.readLine()) != null) {
+                    while ((line = brXMLFile.readLine()) != null) {
                         xmlFileArea.append(line + "\n");
                         lineXML.append(line.trim());
                     }
@@ -174,27 +188,26 @@ public final class EditorTopComponent extends TopComponent {
         } catch (FileNotFoundException ex) {
             Exceptions.printStackTrace(ex);
         }
-    }//GEN-LAST:event_OpenButtonActionPerformed
+    }//GEN-LAST:event_openXMLButtonActionPerformed
 
-    private void ConvertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConvertButtonActionPerformed
+    private void convertToJsonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertToJsonButtonActionPerformed
         JFileChooser saveJsonChooser = new JFileChooser();
-        JFileChooser openFilterChooser = new JFileChooser();
+//        JFileChooser openFilterChooser = new JFileChooser();
 
         FileNameExtensionFilter filterJsonFiles = new FileNameExtensionFilter(
                 "JSON Files", "json");
         saveJsonChooser.setFileFilter(filterJsonFiles);
         saveJsonChooser.setDialogTitle("Salvar JSON");
-        int returnValSaveJson = saveJsonChooser.showSaveDialog(null);
+        int returnValSaveJson = saveJsonChooser.showSaveDialog(this);
 
-        FileNameExtensionFilter filterOpenReplaceFiles = new FileNameExtensionFilter(
-                "Text Files", "txt");
-        openFilterChooser.setFileFilter(filterOpenReplaceFiles);
-        openFilterChooser.setDialogTitle("Padrão de Substituição");
-        int returnValOpenFilter = openFilterChooser.showOpenDialog(null);
-
-        if (returnValSaveJson == JFileChooser.APPROVE_OPTION & returnValOpenFilter == JFileChooser.APPROVE_OPTION) {
+        /*        FileNameExtensionFilter filterOpenReplaceFiles = new FileNameExtensionFilter(
+         "Text Files", "txt");
+         openFilterChooser.setFileFilter(filterOpenReplaceFiles);
+         openFilterChooser.setDialogTitle("Padrão de Substituição");
+         int returnValOpenFilter = openFilterChooser.showOpenDialog(null);
+         */
+        if (returnValSaveJson == JFileChooser.APPROVE_OPTION) {
             PrintWriter out;
-            BufferedReader brFilterFile;
             String jsonFileName = saveJsonChooser.getSelectedFile().toString();
             String jsonConvertFileName;
 
@@ -204,9 +217,10 @@ public final class EditorTopComponent extends TopComponent {
 
             jsonConvertFileName = jsonFileName.replace(".json", " uncoverted.json");
 
-
             try {
-                brFilterFile = new BufferedReader(new FileReader(new File(openFilterChooser.getSelectedFile().toString())));
+                if (brFilterFile == null) {
+                    openReplacePatternButtonActionPerformed(evt);
+                }
                 String convertToScadabrJson = ScadabrJson.ConvertToScadabrJson(XML.toJSONObject(lineXML.toString()), brFilterFile);
 
                 out = new PrintWriter(jsonFileName);
@@ -216,7 +230,7 @@ public final class EditorTopComponent extends TopComponent {
                 out = new PrintWriter(jsonConvertFileName);
                 out.println(XML.toJSONObject(lineXML.toString()).toString(3));
 
-                jsonFileArea.setText(convertToScadabrJson);
+                jsonFileArea.setText((new JSONObject(convertToScadabrJson)).toString(3));
 
                 out.close();
             } catch (FileNotFoundException ex) {
@@ -224,28 +238,42 @@ public final class EditorTopComponent extends TopComponent {
             }
         }
 
-    }//GEN-LAST:event_ConvertButtonActionPerformed
+    }//GEN-LAST:event_convertToJsonButtonActionPerformed
 
-    private void TestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestButtonActionPerformed
-        jsonFileArea.setText("");
-        Iterator itr = XML.toJSONObject(lineXML.toString()).getJSONObject("ScadaBRDataPoints").keys();
-        while (itr.hasNext()) {
-            Object element = itr.next();
-            jsonFileArea.append(element.toString());
+    private void openReplacePatternButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openReplacePatternButtonActionPerformed
+        JFileChooser openFilterChooser = new JFileChooser();
+
+        FileNameExtensionFilter filterOpenReplaceFiles = new FileNameExtensionFilter(
+                "Text Files", "txt");
+        openFilterChooser.setFileFilter(filterOpenReplaceFiles);
+        openFilterChooser.setDialogTitle("Padrão de Substituição");
+        int returnValOpenFilter = openFilterChooser.showOpenDialog(this);
+
+        if (returnValOpenFilter == JFileChooser.APPROVE_OPTION) {
+
+            try {
+                brFilterFile = new BufferedReader(new FileReader(new File(openFilterChooser.getSelectedFile().toString())));
+                if (brXMLFile != null) {
+                    convertToJsonButton.setEnabled(true);
+                }
+
+            } catch (FileNotFoundException ex) {
+                Exceptions.printStackTrace(ex);
+            }
         }
         /*        jsonFileArea.setText(XML.toJSONObject(lineXML.toString()).getJSONObject("ScadaBRDataPoints").keys().toString());
          */
 
-    }//GEN-LAST:event_TestButtonActionPerformed
+    }//GEN-LAST:event_openReplacePatternButtonActionPerformed
 
-    private void toXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toXMLActionPerformed
+    private void convertToXMLButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertToXMLButtonActionPerformed
         JFileChooser saveXMLChooser = new JFileChooser();
 
         FileNameExtensionFilter filterXMLFiles = new FileNameExtensionFilter(
                 "XML Files", "xml");
         saveXMLChooser.setFileFilter(filterXMLFiles);
         saveXMLChooser.setDialogTitle("Salvar XML");
-        int returnValSaveXML = saveXMLChooser.showSaveDialog(null);
+        int returnValSaveXML = saveXMLChooser.showSaveDialog(this);
 
         if (returnValSaveXML == JFileChooser.APPROVE_OPTION) {
             PrintWriter out;
@@ -254,36 +282,76 @@ public final class EditorTopComponent extends TopComponent {
             if (!(XMLFileName.endsWith(".xml"))) {
                 XMLFileName = XMLFileName + ".xml";
             }
-
-
-
+/*            System.out.println(lineJson);
+            System.out.println((new JSONObject(lineJson.toString())).toString(3));
+            System.out.println(XML.toString(new JSONObject(lineJson.toString())));
+*/
             try {
-                String convertToXML = ScadabrJson.ConvertToScadabrJson(JSONML.toString(null);
+                lineXML = new StringBuilder();
+                lineXML.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + "\n");
+                lineXML.append("<ScadaBRDataPointsMeta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" + "\n");
+                lineXML.append(XML.toString(new JSONObject(lineJson.toString())));
+                lineXML.append("</ScadaBRDataPointsMeta>");
+
+                
+                xmlFileArea.setText(lineXML.toString());
 
                 out = new PrintWriter(XMLFileName);
-                out.println(convertToXML);
+                out.println(lineXML.toString());
                 out.close();
-
-                jsonFileArea.setText(convertToScadabrJson);
 
                 out.close();
             } catch (FileNotFoundException ex) {
                 Exceptions.printStackTrace(ex);
             }
+
         }
-    }//GEN-LAST:event_toXMLActionPerformed
+    }//GEN-LAST:event_convertToXMLButtonActionPerformed
+
+    private void openJsonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openJsonButtonActionPerformed
+        try {
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                    "Json Files", "json");
+            chooser.setFileFilter(filter);
+            int returnVal = chooser.showOpenDialog(this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                brJsonFile = new BufferedReader(new FileReader(new File(chooser.getSelectedFile().toString())));
+                convertToXMLButton.setEnabled(true); // enable convertion to XML
+
+                String line;
+                jsonFileArea.setText("");
+                lineJson.setLength(0);
+                try {
+                    while ((line = brJsonFile.readLine()) != null) {
+                        lineJson.append(line.trim());
+                    }
+                    jsonFileArea.setText((new JSONObject(lineJson.toString())).toString(3));
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_openJsonButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ConvertButton;
-    private javax.swing.JButton OpenButton;
-    private javax.swing.JButton TestButton;
+    private javax.swing.JButton convertToJsonButton;
+    private javax.swing.JButton convertToXMLButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jsonFileArea;
-    private javax.swing.JButton toXML;
+    private javax.swing.JButton openJsonButton;
+    private javax.swing.JButton openReplacePatternButton;
+    private javax.swing.JButton openXMLButton;
     private javax.swing.JTextArea xmlFileArea;
     // End of variables declaration//GEN-END:variables
     private StringBuilder lineXML = new StringBuilder();
+    private StringBuilder lineJson = new StringBuilder();
+    private BufferedReader brFilterFile;
+    private BufferedReader brXMLFile;
+    private BufferedReader brJsonFile;
 
     @Override
     public void componentOpened() {

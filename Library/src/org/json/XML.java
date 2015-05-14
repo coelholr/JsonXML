@@ -457,7 +457,7 @@ public class XML {
                             sb.append(toString(value));
                             sb.append("</");
                             sb.append(key);
-                            sb.append('>');
+                            sb.append('>'+"\n");
                         } else {
                             sb.append(toString(value, key));
                         }
@@ -465,7 +465,7 @@ public class XML {
                 } else if ("".equals(value)) {
                     sb.append('<');
                     sb.append(key);
-                    sb.append("/>");
+                    sb.append("/>"+"\n");
 
 // Emit a new tag <k>
 
@@ -479,7 +479,7 @@ public class XML {
 
                 sb.append("</");
                 sb.append(tagName);
-                sb.append('>');
+                sb.append('>'+"\n");
             }
             return sb.toString();
 
@@ -501,7 +501,7 @@ public class XML {
                 string = (object == null) ? "null" : escape(object.toString());
                 return (tagName == null) ? "\"" + string + "\"" :
                     (string.length() == 0) ? "<" + tagName + "/>" :
-                    "<" + tagName + ">" + string + "</" + tagName + ">";
+                    "<" + tagName + ">" + string + "</" + tagName + ">"+"\n";
             }
         }
     }

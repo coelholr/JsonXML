@@ -23,8 +23,6 @@ public class ScadabrJson {
             while ((line1 = br.readLine()) != null) {
                 line2 = br.readLine();
                 textToChange = textToChange.replace(line1, line2);
-                System.out.println(line1);
-                System.out.println(line2);
             }
 
         } catch (IOException ex) {
